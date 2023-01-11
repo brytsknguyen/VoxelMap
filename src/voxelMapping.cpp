@@ -457,7 +457,8 @@ void publish_effect(const ros::Publisher &pubLaserCloudEffect) {
   sensor_msgs::PointCloud2 laserCloudFullRes3;
   pcl::toROSMsg(*laserCloudWorld, laserCloudFullRes3);
   laserCloudFullRes3.header.stamp =
-      ros::Time::now(); //.fromSec(last_timestamp_lidar);
+      // ros::Time::now();
+      ros::Time(last_timestamp_lidar);
   laserCloudFullRes3.header.frame_id = "camera_init";
   pubLaserCloudEffect.publish(laserCloudFullRes3);
 }
@@ -476,7 +477,8 @@ void publish_odometry(const ros::Publisher &pubOdomAftMapped) {
   odomAftMapped.header.frame_id = "camera_init";
   odomAftMapped.child_frame_id = "aft_mapped";
   odomAftMapped.header.stamp =
-      ros::Time::now(); // ros::Time().fromSec(last_timestamp_lidar);
+      // ros::Time::now(); 
+      ros::Time(last_timestamp_lidar);
   set_posestamp(odomAftMapped.pose.pose);
   static tf::TransformBroadcaster br;
   tf::Transform transform;

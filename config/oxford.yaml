@@ -1,10 +1,10 @@
 common:
-    lid_topic:  "/os_cloud_node_merged"
-    imu_topic:  "/imu/imu"
+    lid_topic:  "/os1_cloud_node/points"
+    imu_topic:  "/os1_cloud_node/imu"
 
 preprocess:
-    lidar_type: 4                   #1 for Livox serials LiDAR, 2 for Velodyne LiDAR, 3 for L515 LiDAR, 4 for ouster
-    scan_line: 32
+    lidar_type: 4                   #1 for Livox serials LiDAR, 2 for Velodyne LiDAR, 3 for L515 LiDAR
+    scan_line: 64
     blind: 1
     point_filter_num: 1
     calib_laser: false              # true for KITTI Odometry dataset
@@ -16,8 +16,8 @@ mapping:
     max_layer: 4                # 4 layer, 0, 1, 2, 3
     layer_point_size: [5, 5, 5, 5, 5]
     plannar_threshold: 0.01
-    max_points_size: 6000
-    max_cov_points_size: 6000
+    max_points_size: 4000
+    max_cov_points_size: 4000
 
 noise_model:
     ranging_cov: 0.04
@@ -27,10 +27,10 @@ noise_model:
 
 imu:
     imu_en: false
-    extrinsic_T: [ 0, 0, 0]
-    extrinsic_R: [ 1, 0, 0, 
-                   0, 1, 0, 
-                   0, 0, 1]
+    extrinsic_T: [ 0.0063, 0.0118, 0.0285]
+    extrinsic_R: [-1,  0,  0, 
+                   0, -1,  0, 
+                   0,  0,  1]
 
 visualization:
     pub_voxel_map: false
